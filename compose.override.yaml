@@ -1,0 +1,18 @@
+# compose.override.yaml - Development configuration
+# Override for local development with hot-reload and debugging
+# Reference: docs/specs/delivery/docker-compose.md
+
+services:
+  app:
+    build:
+      target: builder
+    volumes:
+      - ./src:/build/src:ro
+      - ./target:/build/target
+    environment:
+      - RUST_LOG=debug
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 512M

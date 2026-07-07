@@ -87,9 +87,6 @@ jobs:
       - name: Run tests
         run: cargo test --workspace
 
-      - name: Run doc tests
-        run: cargo test --doc
-
   lint:
     name: Linting
     runs-on: ubuntu-latest

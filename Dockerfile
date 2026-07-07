@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
 
 # ---- builder ------------------------------------------------------------
-FROM rust:1.75-slim@sha256:b27df5841f3355e9473f9a516d38a6783b6c8dfeacaf2d14a240f443b368ddb6 AS builder
+# rust:1.75-slim digest as of 2024-01
+# Image: rust:1.75-slim
+# Digest: sha256:70c2a016184099262fd7cee46f3d35fec3568c45c62f87e37f7f665f766b1f74
+FROM rust:1.75-slim@sha256:70c2a016184099262fd7cee46f3d35fec3568c45c62f87e37f7f665f766b1f74 AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
@@ -25,6 +28,9 @@ COPY src ./src
 RUN cargo build --release
 
 # ---- runtime ------------------------------------------------------------
+# debian:bookworm-slim digest as of 2024-01
+# Image: debian:bookworm-slim
+# Digest: sha256:60eac759739651111db372c07be67863818726f754804b8707c90979bda511df
 FROM debian:bookworm-slim@sha256:60eac759739651111db372c07be67863818726f754804b8707c90979bda511df AS runtime
 
 RUN groupadd --gid 10001 app \
@@ -43,6 +49,6 @@ USER 10001:10001
 
 # Health check placeholder - replace with real health endpoint for services
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD ["/app/stack-base-rust"] || exit 0
+    CMD ["/app/stack-base-rust"]
 
 ENTRYPOINT ["/app/stack-base-rust"]

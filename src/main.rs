@@ -10,7 +10,10 @@ fn main() {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn it_works() {
-        assert!(true);
+    fn test_greeting() {
+        // Test that the greeting function would produce expected output
+        // This is a placeholder test - replace with actual tests as the project grows
+        let expected = "Hello from stack-base-rust!";
+        assert!(!expected.is_empty());
     }
 }

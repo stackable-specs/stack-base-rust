@@ -2,8 +2,10 @@
 # https://github.com/hadolint/hadolint
 
 # We pin images by digest, so the tag is for readability only
+# We don't pin apt package versions in base templates (would break across distro versions)
 ignored:
   - DL3006  # Always tag FROM images (we use digest pinning)
+  - DL3008  # Pin versions in apt-get (base templates don't pin package versions)
 
 # Treat these as errors
 override:

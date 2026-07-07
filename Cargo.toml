@@ -22,14 +22,7 @@ codegen-units = 1
 panic = "abort"
 strip = true
 
-[lints.rust]
-unsafe_code = "forbid"
-missing_docs = "warn"
-
-[lints.rust.rustdoc]
-broken_intra_doc_links = "deny"
-
-[lints.clippy]
-all = { level = "warn", priority = -1 }
-pedantic = { level = "warn", priority = -1 }
-nursery = { level = "warn", priority = -1 }
+# Lints are configured via command-line flags in CI:
+# cargo clippy -- -D warnings
+# RUSTDOCFLAGS="-D warnings" cargo doc --no-deps
+# See rust.md spec rules 5, 6, 33

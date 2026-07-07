@@ -1,7 +1,7 @@
 # Rust build artifacts
 /target/
 **/*.rs.bk
-Cargo.lock
+# Cargo.lock should be committed for applications (see ADR-005)
 
 # IDE and editor files
 .vscode/

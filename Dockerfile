@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ---- builder ------------------------------------------------------------
-FROM rust:1.75-slim@sha256:e859b8dc377ae52a9b8e45b79c9c2e4e4c3d8b4c1c3c9e0a1b2c3d4e5f6a7b8c AS builder
-# rust:1.75-slim
+FROM rust:1.75-slim@sha256:b27df5841f3355e9473f9a516d38a6783b6c8dfeacaf2d14a240f443b368ddb6 AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
@@ -26,8 +25,7 @@ COPY src ./src
 RUN cargo build --release
 
 # ---- runtime ------------------------------------------------------------
-FROM debian:bookworm-slim@sha256:b2a9af0e5a79e5e5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a AS runtime
-# debian:bookworm-slim
+FROM debian:bookworm-slim@sha256:60eac759739651111db372c07be67863818726f754804b8707c90979bda511df AS runtime
 
 RUN groupadd --gid 10001 app \
     && useradd --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app
